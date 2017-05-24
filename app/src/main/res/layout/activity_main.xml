@@ -10,13 +10,24 @@
         android:layout_width="368dp"
         android:layout_height="495dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
 
-        <Space
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                app:srcCompat="@android:drawable/ic_menu_preferences" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,21 +36,32 @@
 
             <TextView
                 android:id="@+id/billNumberText"
-                android:layout_width="10px"
-                android:layout_height="50px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Total Cost: "
                 android:textColor="@android:color/background_dark"
-                android:textColorLink="@android:color/background_dark" />
+                android:textColorLink="@android:color/background_dark"
+                android:textSize="30sp" />
 
             <EditText
-                android:id="@+id/editText2"
-                android:layout_width="20px"
+                android:id="@+id/totalCost"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="350px"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/currencySign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="$"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="30sp" />
 
         </LinearLayout>
 
@@ -48,7 +70,7 @@
             android:layout_height="100px" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -58,15 +80,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Tip percentage:"
-                android:textColor="@android:color/background_dark" />
+                android:textColor="@android:color/background_dark"
+                android:textSize="30sp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/tipPercent"
                 android:layout_width="100px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:gravity="right"
+                android:inputType="number"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/percentageText"
@@ -74,7 +99,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="%"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="30sp" />
 
         </LinearLayout>
 
@@ -94,16 +120,39 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Amount of people paying: "
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="30sp" />
 
             <EditText
-                android:id="@+id/editText4"
-                android:layout_width="100px"
+                android:id="@+id/numPeople"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="30sp" />
 
+            <Space
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/calcButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Calculate" />
         </LinearLayout>
 
     </LinearLayout>
