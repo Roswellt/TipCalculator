@@ -28,11 +28,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fillIntegers();
-                Intent intent = new Intent("com.example.qdo010.tipcalculator.Summary");
-                intent.putExtra("totalCost", totalCost.toString());
-                intent.putExtra("tipPercent", tipPercent.toString());
-                intent.putExtra("numPeople", numPeople.toString());
-                startActivity(intent);
+                if(editTextEmpty()){
+                    Toast.makeText(getApplicationContext(), "Cannot leave a line empty", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    if (Integer.valueOf(totalCost.toString()) < 0 || (Integer.valueOf(tipPercent.toString()) < 0 || Integer.valueOf(tipPercent.toString()) > 100) || Integer.valueOf(numPeople.toString()) <= 0) {
+                        Toast.makeText(getApplicationContext(), "Numbers are outside of valid range", Toast.LENGTH_LONG).show();
+                    } else {
+                        Intent intent = new Intent("com.example.qdo010.tipcalculator.Summary");
+                        intent.putExtra("totalCost", totalCost.toString());
+                        intent.putExtra("tipPercent", tipPercent.toString());
+                        intent.putExtra("numPeople", numPeople.toString());
+                        startActivity(intent);
+                    }
+                }
             }
         });
     }
@@ -41,5 +50,12 @@ public class MainActivity extends AppCompatActivity {
         totalCost = ((TextView) findViewById(R.id.totalCost)).getText();
         tipPercent = ((TextView) findViewById(R.id.tipPercent)).getText();
         numPeople = ((TextView) findViewById(R.id.numPeople)).getText();
+    }
+    public boolean editTextEmpty(){
+        if(((TextView) findViewById(R.id.totalCost)).getText().length()==0 || ((TextView) findViewById(R.id.tipPercent)).getText().length()==0 || ((TextView) findViewById(R.id.numPeople)).getText().length()==0){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
