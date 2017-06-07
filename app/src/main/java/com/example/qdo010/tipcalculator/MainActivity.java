@@ -25,8 +25,6 @@ public class MainActivity extends Activity{
 
     private Button calcButton, upButton, downButton, tipSuggest;
     private CharSequence totalCost, tipPercent, numPeople;
-    private RatingBar ratingBar;
-    TextView tipPer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +84,8 @@ public class MainActivity extends Activity{
         tipSuggest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
+                Intent intent = new Intent("com.example.qdo010.tipcalculator.RatingMenu");
+                startActivity(intent);
             }
         });
     }
@@ -131,7 +130,12 @@ public class MainActivity extends Activity{
         TextView tip = (TextView) findViewById(R.id.tipPercent);
         currency.setText(preferences.getString("currency", "$"));
         int tipp = preferences.getInt("defaultTip", 15);
-        tip.setText(Integer.toString(tipp));
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            tip.setText((String) extras.get("tipPercent"));
+        } else {
+            tip.setText(Integer.toString(tipp));
+        }
         //Toast.makeText(this, Integer.toString(tipp), Toast.LENGTH_LONG).show();
         //String tipPercent = preferences.getString("defaultTip", "15");
         //tip.setText(tipPercent);

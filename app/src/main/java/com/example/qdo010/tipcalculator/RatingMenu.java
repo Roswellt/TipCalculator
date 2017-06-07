@@ -1,5 +1,7 @@
 package com.example.qdo010.tipcalculator;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.media.Rating;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +10,7 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-public class RatingMenu extends AppCompatActivity {
+public class RatingMenu extends Activity {
 
     public RatingBar ratingBar;
     public TextView tipPer;
@@ -19,7 +21,7 @@ public class RatingMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating_menu);
         addListenerOnRatingBar();
-
+        addListeners();
     }
 
     public void addListenerOnRatingBar() {
@@ -43,8 +45,9 @@ public class RatingMenu extends AppCompatActivity {
         finishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.tipPercent
-                finish();
+                Intent intent = new Intent("com.example.qdo010.tipcalculator.MainActivity");
+                intent.putExtra("tipPercent", tipPer.getText());
+                startActivity(intent);
             }
         });
     }
