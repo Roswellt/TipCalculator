@@ -28,23 +28,24 @@
                 android:textColorLink="@android:color/background_dark"
                 android:textSize="30sp" />
 
-            <EditText
-                android:id="@+id/totalCost"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="end"
-                android:inputType="number"
-                android:textSize="30sp" />
-
             <TextView
                 android:id="@+id/currencySign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="end"
                 android:text="$"
                 android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/totalCost"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="end"
+                android:inputType="numberSigned"
                 android:textSize="30sp" />
 
         </LinearLayout>
