@@ -43,7 +43,7 @@ public class MainActivity extends Activity{
                     Toast.makeText(getApplicationContext(), "Cannot leave a line empty", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    if (Integer.valueOf(totalCost.toString()) < 0 || (Integer.valueOf(tipPercent.toString()) < 0 || Integer.valueOf(tipPercent.toString()) > 100) || Integer.valueOf(numPeople.toString()) <= 0) {
+                    if (Double.valueOf(totalCost.toString()) < 0 || (Integer.valueOf(tipPercent.toString()) < 0 || Integer.valueOf(tipPercent.toString()) > 100) || Integer.valueOf(numPeople.toString()) <= 0) {
                         Toast.makeText(getApplicationContext(), "Numbers are outside of valid range", Toast.LENGTH_LONG).show();
                     } else {
                         Intent intent = new Intent("com.example.qdo010.tipcalculator.Summary");
