@@ -136,7 +136,7 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="200dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Total for each person:"
@@ -145,7 +145,7 @@
 
             <TextView
                 android:id="@+id/currency5"
-                android:layout_width="70dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
@@ -155,7 +155,7 @@
 
             <TextView
                 android:id="@+id/eachPP"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
