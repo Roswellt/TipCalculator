@@ -31,6 +31,7 @@ public class Summary extends Activity {
         totalTip = billCost * (tipPercent/100);
         totalTip = (double)Math.round(totalTip * 100d) / 100d;
         totalCost = billCost + totalTip;
+        totalCost = (double)Math.round(totalCost * 100d) / 100d;
         tipPP = totalTip/numPeople;
         tipPP = (double)Math.round(tipPP * 100d) / 100d;
         eachPP = totalCost/numPeople;
