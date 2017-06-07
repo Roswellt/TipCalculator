@@ -141,35 +141,9 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Suggest a tip?"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="30sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:numStars="5" />
-        </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -177,6 +151,18 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/tipSuggest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Suggest a tip" />
+
+            <Space
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/calcButton"

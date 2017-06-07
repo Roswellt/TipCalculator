@@ -23,7 +23,7 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends Activity{
 
-    private Button calcButton, upButton, downButton;
+    private Button calcButton, upButton, downButton, tipSuggest;
     private CharSequence totalCost, tipPercent, numPeople;
     private RatingBar ratingBar;
     TextView tipPer;
@@ -33,7 +33,6 @@ public class MainActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setButtonListener();
-        addListenerOnRatingBar();
     }
 
     public void setButtonListener(){
@@ -83,6 +82,13 @@ public class MainActivity extends Activity{
                 }
             }
         });
+        tipSuggest = (Button) findViewById(R.id.tipSuggest);
+        tipSuggest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+            }
+        });
     }
 
     public void fillIntegers(){
@@ -115,22 +121,6 @@ public class MainActivity extends Activity{
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    public void addListenerOnRatingBar() {
-
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        tipPer = (TextView) findViewById(R.id.tipPercent);
-
-        //if rating value is changed,
-        //display the current rating value in the result (textview) automatically
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            public void onRatingChanged(RatingBar ratingBar, float rating,
-                                        boolean fromUser) {
-                int tip = Math.round(10+(rating*2));
-                tipPer.setText(Integer.toString(tip));
-            }
-        });
     }
 
     @Override
