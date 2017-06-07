@@ -1,25 +1,39 @@
 package com.example.qdo010.tipcalculator;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.Menu;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity{
 
-    private Button calcButton;
+    private Button calcButton, upButton, downButton;
     private CharSequence totalCost, tipPercent, numPeople;
+    private RatingBar ratingBar;
+    TextView tipPer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setButtonListener();
+        addListenerOnRatingBar();
     }
 
     public void setButtonListener(){
@@ -44,6 +58,31 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        upButton = (Button) findViewById(R.id.upButton);
+        upButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numPeople = ((TextView) findViewById(R.id.numPeople)).getText();
+                if(numPeople.length()==0){
+                    ((TextView) findViewById(R.id.numPeople)).setText("1");
+                } else {
+                    int addOne = Integer.valueOf(numPeople.toString()) + 1;
+                    ((TextView) findViewById(R.id.numPeople)).setText(Integer.toString(addOne));
+                }
+            }
+        });
+        downButton = (Button) findViewById(R.id.downButton);
+        downButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numPeople = ((TextView) findViewById(R.id.numPeople)).getText();
+                if(numPeople.length()==0 || Integer.valueOf(numPeople.toString()) == 0){
+                } else {
+                    int minusOne = Integer.valueOf(numPeople.toString()) - 1;
+                    ((TextView) findViewById(R.id.numPeople)).setText(Integer.toString(minusOne));
+                }
+            }
+        });
     }
 
     public void fillIntegers(){
@@ -57,5 +96,54 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.options:
+                Intent intent = new Intent("com.example.qdo010.tipcalculator.Menu");
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void addListenerOnRatingBar() {
+
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        tipPer = (TextView) findViewById(R.id.tipPercent);
+
+        //if rating value is changed,
+        //display the current rating value in the result (textview) automatically
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+                int tip = Math.round(10+(rating*2));
+                tipPer.setText(Integer.toString(tip));
+            }
+        });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        TextView currency = (TextView) findViewById(R.id.currencySign);
+        TextView tip = (TextView) findViewById(R.id.tipPercent);
+        currency.setText(preferences.getString("currency", "$"));
+        int tipp = preferences.getInt("defaultTip", 15);
+        tip.setText(Integer.toString(tipp));
+        //Toast.makeText(this, Integer.toString(tipp), Toast.LENGTH_LONG).show();
+        //String tipPercent = preferences.getString("defaultTip", "15");
+        //tip.setText(tipPercent);
     }
 }
